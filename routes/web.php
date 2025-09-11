@@ -7,11 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('products')->controller(ProductController::class)-> group (function ()  {
-    
-    Route::get('/','index');
-    Route::get('/', 'create')->name('products.create');
-    Route::get('/{id}/{category?}', 'show')->name('products.show');
-
+Route::prefix('products')->controller(ProductController::class)->group(function ()  {
+    Route::get('/', 'index')->name('products.index');             // /products
+    Route::get('/create', 'create')->name('products.create');     // /products/create
+    Route::get('/{id}/{category?}', 'show')->name('products.show'); // /products/1/categoria
 });
-
