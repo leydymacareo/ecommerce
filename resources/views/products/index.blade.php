@@ -1,29 +1,65 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Productos - PastelShop</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-[#f9f6fb] min-h-screen">
+@extends('layouts.app')
 
-    <!-- Header -->
-    <header class="bg-[#a084ca] shadow-md">
-        <div class="container mx-auto flex justify-between items-center py-4 px-6">
-            <h1 class="text-2xl font-bold text-white">Tecnología</h1>
-            <div class="flex-1 px-6">
-                <input type="text" placeholder="Buscar productos..." 
-                       class="w-full p-2 rounded-lg border border-[#ddd] focus:outline-none focus:ring-2 focus:ring-[#6b5b95]">
-            </div>
-            <button class="bg-[#6b5b95] text-white px-4 py-2 rounded-lg hover:bg-[#4b3c72]">🛒 Carrito</button>
-        </div>
-    </header>
+@section('title', 'Lista de productos')
 
-    <!-- Contenido -->
+@section('css')
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f9f6fb;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: #a084ca;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+    }
+
+    header h1 { font-size: 24px; font-weight: bold; }
+    header input { flex: 1; margin: 0 20px; padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; }
+    header button { background: #6b5b95; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; }
+    header button:hover { background: #4b3c72; }
+
+    /* Cambié el nombre para no chocar con la clase container de Tailwind */
+    .custom-container { 
+        display: flex; 
+        justify-content: center; 
+        padding: 40px; 
+    }
+
+    .form-container { 
+        background: #fff; 
+        padding: 30px; 
+        border-radius: 15px; 
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1); 
+        width: 450px; 
+    }
+
+    h1 { text-align: center; color: #6b5b95; margin-bottom: 25px; }
+
+    label { display: block; margin-bottom: 6px; font-weight: bold; color: #444; }
+    input, textarea, button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; font-size: 15px; transition: all 0.3s ease; }
+    input:focus, textarea:focus { border-color: #a084ca; outline: none; box-shadow: 0px 0px 5px #a084ca; }
+
+    button { background-color: #a084ca; color: white; font-weight: bold; border: none; cursor: pointer; }
+    button:hover { background-color: #6b5b95; }
+
+    footer { background: #a084ca; text-align: center; padding: 20px; margin-top: 30px; color: white; }
+</style>
+@endsection
+
+
+@section('content')
+<!-- Contenido -->
     <main class="container mx-auto py-10 px-6">
-        <h2 class="text-3xl font-bold text-center text-[#6b5b95] mb-10">Lista de Productos</h2>
+        <h2 class="text-3xl font-bold text-center text-[#6b5b95] mb-10">
+             Lista de Productos
+        </h2>
 
         <!-- Grid de productos -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -82,10 +118,4 @@
 
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-[#a084ca] text-center py-6 mt-10">
-        <p class="text-white">&copy; 2025 PastelShop - Todos los derechos reservados</p>
-    </footer>
-</body>
-</html>
+@endsection

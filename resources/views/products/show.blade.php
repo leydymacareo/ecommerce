@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle del Producto</title>
-    <style>
+@extends('layouts.app')
+
+@section('title', 'Detalle de productos')
+
+@section('css')
+<style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f9f6fb;
@@ -120,18 +119,12 @@
             margin-top: 30px;
             color: white;
         }
-    </style>
-</head>
-<body>
-    
-    <!-- Header -->
-    <header>
-        <h1>Tecnología</h1>
-        <input type="text" placeholder="Buscar productos...">
-        <button>🛒 Carrito</button>
-    </header>
+</style>
+@endsection
 
-    <!-- Contenido principal -->
+
+@section('content')
+<!-- Contenido principal -->
     <div class="container">
         <div class="product-detail">
             <img src="https://picsum.photos/400/300?random=1" alt="Producto">
@@ -145,10 +138,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 PastelShop - Todos los derechos reservados</p>
-    </footer>
-</body>
-</html>
+@endsection

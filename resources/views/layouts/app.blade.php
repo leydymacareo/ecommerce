@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Mi App')</title>
     @yield('css')
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     @include('layouts.navbar')
