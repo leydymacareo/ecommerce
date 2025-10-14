@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use App\Models\Brand;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,5 +23,8 @@ class CategoryBrand extends Seeder
         $myBrand3 = new Brand;
         $myBrand3->name = "Intel";
         $myBrand3->save();
+
+        // Crear 100 marcas aleatorias
+        \App\Models\Brand::factory(100)->create();
     }
 }
