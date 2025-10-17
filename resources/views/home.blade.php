@@ -1,23 +1,29 @@
 @extends('layouts.app')
 
+@section('title', 'Panel')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+<main class="page-dashboard">
+  <section class="dash-wrapper">
+    <div class="dash-card">
+      <h1 class="dash-title">¡Bienvenido, {{ Auth::user()->name }}!</h1>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+      @if (session('status'))
+        <div class="alert" role="alert">{{ session('status') }}</div>
+      @endif
 
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+      <p class="dash-sub">Usted está conectado.</p>
+
+      <div class="dash-actions">
+        <a href="{{ url('products') }}" class="btn">Ver productos</a>
+        <a href="{{ route('products.create') }}" class="btn btn--ghost">Crear producto</a>
+
+        <form action="{{ route('logout') }}" method="POST" style="margin-left:auto">
+          @csrf
+          <button type="submit" class="btn btn--ghost">Cerrar sesión</button>
+        </form>
+      </div>
     </div>
-</div>
+  </section>
+</main>
 @endsection

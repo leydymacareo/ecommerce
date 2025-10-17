@@ -2,67 +2,53 @@
 
 @section('title', 'Crear producto')
 
-@section('css')
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: #f9f6fb;
-        margin: 0;
-        padding: 0;
-    }
-
-    header {
-        background: #a084ca;
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: white;
-    }
-
-    header h1 { font-size: 24px; font-weight: bold; }
-    header input { flex: 1; margin: 0 20px; padding: 8px 12px; border-radius: 8px; border: 1px solid #ddd; }
-    header button { background: #6b5b95; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; }
-    header button:hover { background: #4b3c72; }
-
-    .container { display: flex; justify-content: center; padding: 40px; }
-    .form-container { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0px 4px 15px rgba(0,0,0,0.1); width: 450px; }
-
-    h1 { text-align: center; color: #6b5b95; margin-bottom: 25px; }
-
-    label { display: block; margin-bottom: 6px; font-weight: bold; color: #444; }
-    input, textarea, button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; font-size: 15px; transition: all 0.3s ease; }
-    input:focus, textarea:focus { border-color: #a084ca; outline: none; box-shadow: 0px 0px 5px #a084ca; }
-
-    button { background-color: #a084ca; color: white; font-weight: bold; border: none; cursor: pointer; }
-    button:hover { background-color: #6b5b95; }
-
-    footer { background: #a084ca; text-align: center; padding: 20px; margin-top: 30px; color: white; }
-</style>
-@endsection
-
 @section('content')
-<div class="container">
-    <div class="form-container">
-        <h1>Crear un nuevo producto</h1>
-            @csrf
-            <label for="name">Nombre</label>
-            <input type="text" name="name" id="name" required>
+<main class="page-create">
+  <div class="create-wrapper">
+    <div class="create-card">
+      <h1 class="create-title">Crear un nuevo producto</h1>
 
-            <label for="description">Descripción</label>
-            <textarea name="description" id="description" cols="30" rows="5" required></textarea>
+      {{-- Formulario solo visual / demo. No envía a ninguna ruta. --}}
+      <form class="create-form" onsubmit="return false">
+        {{-- Sin @csrf, sin action, sin method --}}
 
-            <label for="price">Precio</label>
-            <input type="number" name="price" id="price" step="0.01" required>
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" placeholder="Celular" required>
+        </div>
 
-            <label for="image">Imagen</label>
-            <input type="file" name="image" id="image" accept="image/*" required>
+        <div class="field">
+          <label for="description">Descripción</label>
+          <textarea id="description" rows="4" placeholder="Describe el producto..." required></textarea>
+        </div>
 
-            <label for="brand">Marca</label>
-            <input type="text" name="brand" id="brand" required>
+        <div class="field">
+          <label for="price">Precio</label>
+          <input type="number" id="price" step="0.01" placeholder="29.90" required>
+        </div>
 
-            <button type="submit">Guardar Producto</button>
-        </form>
+        <div class="field">
+          <label for="image">Imagen (URL)</label>
+          <input
+            type="url"
+            id="image"
+            placeholder="https://ejemplo.com/imagen.jpg"
+            inputmode="url"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="brand">Marca</label>
+          <input type="text" id="brand" placeholder="Apple" required>
+        </div>
+
+        <div class="create-actions">
+          <a href="{{ route('products.index') }}" class="btn btn--ghost">Volver</a>
+          <button type="button" class="btn">Guardar (demo)</button>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
+</main>
 @endsection
