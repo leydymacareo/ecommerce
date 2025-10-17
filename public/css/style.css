@@ -13,7 +13,7 @@ body{margin:0;line-height:1.5}
   --muted:#6b6b6b;
 
   --brand:#C4A5FF;     /* lavanda suave */
-  --brand-600:#AA8BFF;
+  --brand-600:#aa8bff;
 
   --border:#EDE7F6;
   --shadow:0 6px 20px rgba(174,156,255,0.15), 0 1px 2px rgba(0,0,0,.04);
@@ -781,4 +781,84 @@ main{
 .page-dashboard .dash-actions{
   margin-top: .5rem;
   display: flex; gap: .6rem; flex-wrap: wrap;
+}
+
+
+/* === Corrección de contraste para modo claro === */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fffdfc;
+    --surface: #ffffff;
+    --surface-2: #fef8ff;
+    --text: #3b3b3b;        /* texto más oscuro */
+    --muted: #5e5c5c;       /* gris medio más visible */
+    --border: #e3d9f2;
+  }
+
+  /* Reforzar contraste en títulos y enlaces dentro de auth y home */
+  .page-auth .card-header,
+  .page-auth .auth-title,
+  .page-auth label,
+  .page-auth p,
+  .page-auth a {
+    color: var(--text) !important;
+  }
+
+  .page-auth .btn.btn-link {
+    color: color-mix(in oklab, var(--brand-600) 55%, var(--text)) !important;
+  }
+
+  /* Si el fondo es blanco total, aseguramos que no se pierdan los contornos */
+  .page-auth .auth-card {
+    background: var(--surface-2);
+    border: 1px solid color-mix(in oklab, var(--brand) 20%, var(--border));
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Input con borde más visible en modo claro */
+  .page-auth .form-control {
+    border-color: color-mix(in oklab, var(--brand) 25%, var(--border));
+  }
+}
+/* === Espaciado interno en los campos de texto === */
+.page-auth .form-control {
+  padding: 0.6rem 1rem;        /* espacio arriba/abajo y a los lados */
+  border-radius: 0.6rem;       /* mantiene las esquinas suaves */
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+/* Asegurar que el texto placeholder no se pegue y sea visible */
+.page-auth .form-control::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+/* Contenedor de cada grupo label + input */
+.page-auth .form-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px; 
+  margin-bottom: 1rem;
+}
+
+/* Label */
+.page-auth label,
+.page-auth .form-label {
+  width: 180px; /* ajusta ancho del texto si lo deseas */
+  text-align: left;
+  font-weight: 600;
+  color: #3b3b3b;
+}
+
+/* Inputs */
+.page-auth input[type="text"],
+.page-auth input[type="email"],
+.page-auth input[type="password"] {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #b693ff;
+  outline: none;
+  width: 300px;
 }
