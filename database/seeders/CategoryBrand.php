@@ -25,6 +25,6 @@ class CategoryBrand extends Seeder
         $myBrand3->save();
 
         // Crear 100 marcas aleatorias
-        \App\Models\Brand::factory(100)->create();
+        \App\Models\Brand::factory(10)->create();
     }
 }

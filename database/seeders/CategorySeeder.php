@@ -26,6 +26,6 @@ class CategorySeeder extends Seeder
         $myCategory3->name = "Computadores";
         $myCategory3->save();
 
-        Category::factory(1000)->create();
+        Category::factory(10)->create();
     }
 }

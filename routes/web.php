@@ -4,13 +4,9 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/',[ProductController::class, 'index']);
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
+Route::get('products/{id}/{category?}', [ProductController::class, 'show'])->name('products.show');
 
-Route::prefix('products')->controller(ProductController::class)->group(function ()  {
-    Route::get('/', 'index')->name('products.index');             // /products
-    Route::get('/create', 'create')->name('products.create');     // /products/create
-    Route::get('/{id}/{category?}', 'show')->name('products.show'); // /products/1/categoria
-});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -20,4 +16,5 @@ Route::prefix('admin')->group(function () {
     Route::get('category/create', [CategoryController::class, 'create'])->name('admin.category.create');
 
     Route::post('category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+    Route::get('products/create', [ProductController::class, 'create']);
 });
