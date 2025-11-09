@@ -11,14 +11,15 @@
                         <h5 class="mb-0">Crear un nuevo producto</h5>
                         <p class="text-sm text-muted mb-0">Completa los campos para registrar un producto en el catálogo.</p>
                     </div>
-                    <a href="{{ route('products.index') }}" class="btn btn-outline-dark btn-sm">
+                    <a href="{{ route('admin.products.index') }}" class="btn btn-outline-dark btn-sm">
                         <i class="material-symbols-rounded me-1">arrow_back</i>
                         Volver al listado
                     </a>
                 </div>
 
                 <div class="card-body px-4">
-                    <form class="row g-4" onsubmit="return false">
+                    <form action="{{ route('admin.products.store') }}" method="POST" class="row g-4">
+                        @csrf
                         <div class="col-md-6">
                             <label for="name" class="form-label text-sm text-uppercase text-secondary">Nombre</label>
                             <input type="text" id="productName"
@@ -29,7 +30,7 @@
                             <label for="category" class="form-label text-sm text-uppercase text-secondary">Categoría</label>
                             <select id="category" name="category"
                                 class="form-select border border-1 border-secondary px-3 py-2">
-                                <option value="" selected disabled>Selecciona una categoría</option>
+                                <option selected disabled>Selecciona una categoría</option>
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
@@ -40,11 +41,9 @@
                             <label for="brand" class="form-label text-sm text-uppercase text-secondary">Marca</label>
                             <select id="brand" name="brand"
                                 class="form-select border border-1 border-secondary px-3 py-2">
-                                <option value="" selected disabled>Selecciona una marca</option>
+                                <option selected disabled>Selecciona una marca</option>
                                 @foreach ($brands as $item)
-                                    {
                                     <option value={{ $item->id }}>{{ $item->name }}</option>
-                                    }
                                 @endforeach
                             </select>
                         </div>
@@ -52,7 +51,6 @@
                         <div class="col-md-6">
                             <label for="price" class="form-label text-sm text-uppercase text-secondary">Precio</label>
                             <div class="input-group">
-                                <span class="input-group-text px-3 py-2">USD</span>
                                 <input type="number" id="price"
                                     class="form-control border border-1 border-secondary px-3 py-2" step="0.01"
                                     name="price">
@@ -79,9 +77,9 @@
                                 <i class="material-symbols-rounded me-1">restart_alt</i>
                                 Limpiar
                             </button>
-                            <button type="button" class="btn bg-gradient-dark text-uppercase">
+                            <button type="submit" class="btn bg-gradient-dark text-uppercase">
                                 <i class="material-symbols-rounded me-1">save</i>
-                                Guardar (demo)
+                                Guardar
                             </button>
                         </div>
                     </form>
