@@ -5,6 +5,10 @@
         <div class="card-body">
             <h3 class="text-center text-uppercase text-secondary mb-4">Lista de Productos</h3>
 
+
+            <a type="button" class="btn btn-success" href="{{ route('admin.products.create') }}">Add new product</a>
+
+
             {{-- Contenedor con scroll horizontal --}}
             <div class="table-responsive">
                 <table class="table table-striped table-hover align-items-center mb-0">
@@ -41,6 +45,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $products->links() }}
+
             </div>
         </div>
     </div>

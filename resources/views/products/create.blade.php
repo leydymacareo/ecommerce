@@ -18,6 +18,7 @@
                 </div>
 
                 <div class="card-body px-4">
+
                     <form action="{{ route('admin.products.store') }}" method="POST" class="row g-4">
                         @csrf
                         <div class="col-md-6">
