@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
@@ -13,12 +14,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('category', [CategoryController::class, 'table'])->name('admin.category.table');
     Route::get('category/create', [CategoryController::class, 'create'])->name('admin.category.create');
-
     Route::post('category/store', [CategoryController::class, 'store'])->name('admin.category.store');
+
     Route::get('products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('products/store', [ProductController::class, 'store'])->name('admin.products.store');
     Route::get('products', [ProductController::class, 'table'])->name('admin.products.table');
 
+    Route::get('brands', [BrandController::class, 'table'])->name('admin.brand.table');
+    Route::get('brands/create', [BrandController::class, 'create'])->name('admin.brand.create');
+    Route::post('brands/store', [BrandController::class, 'store'])->name('admin.brand.store');
 });
 Route::get('products/{id}/{category?}', [ProductController::class, 'show'])->name('products.show');

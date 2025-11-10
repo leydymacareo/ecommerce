@@ -9,9 +9,24 @@ use App\Models\Brand;
 
 class ProductController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        return view('products.index');
+        $categories = Category::orderBy('name')->get();
+
+        $productsQuery = Product::with(['category', 'brand'])
+            ->orderBy('created_at', 'desc');
+
+        if ($request->filled('category')) {
+            $productsQuery->where('category_id', $request->get('category'));
+        }
+
+        $products = $productsQuery->paginate(12)->withQueryString();
+
+        return view('products.index', [
+            'products' => $products,
+            'categories' => $categories,
+            'currentCategory' => $request->get('category')
+        ]);
     }
 
     function create()
@@ -67,4 +82,3 @@ class ProductController extends Controller
         ]);
     }
 }
-
